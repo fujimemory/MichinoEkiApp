@@ -24,10 +24,13 @@ class RegisterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayout()
+        toLoginButton.addTarget(self, action: #selector(toLogin), for: .touchUpInside)
     }
     
     private func setupLayout() {
         view.backgroundColor = UIColor(named: "main")
+        // 戻るボタンを隠す
+        self.navigationItem.hidesBackButton = true
        
         let stackviews = [
             [emailLabel,emailTextField],
@@ -70,6 +73,11 @@ class RegisterViewController: UIViewController {
         toLoginButton.anchor(top: registerButton.bottomAnchor ,
                                 centerX: view.centerXAnchor,
                                 topPadding: 10)
+    }
+    
+    // ログイン画面に戻る
+    @objc private func toLogin() {
+        self.navigationController?.popViewController(animated: true)
     }
     
 }

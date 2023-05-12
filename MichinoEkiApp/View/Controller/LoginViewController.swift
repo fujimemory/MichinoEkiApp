@@ -24,7 +24,7 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
 
         setupLayout()
-
+        toRegisterButton.addTarget(self, action: #selector(toRegister), for: .touchUpInside)
     }
     
     //MARK: - Function
@@ -67,6 +67,12 @@ class LoginViewController: UIViewController {
         toRegisterButton.anchor(top: loginButton.bottomAnchor ,
                                 centerX: view.centerXAnchor,
                                 topPadding: 10)
+    }
+    
+    // 登録画面への遷移
+    @objc private func toRegister() {
+        let nextVC = RegisterViewController()
+        self.navigationController?.pushViewController(nextVC, animated: true)
     }
     
 }
