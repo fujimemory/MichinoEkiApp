@@ -6,8 +6,13 @@
 //
 
 import UIKit
+import RxSwift
 
 class RegisterViewController: UIViewController {
+    
+    //MARK: - Property
+    var viewModel = RegisterViewModel()
+    private let disposeBag = DisposeBag()
     //MARK: - UIView
     var titleLabel = UILabel.createTitleLabel("新規登録")// タイトル
     var emailLabel = UILabel.createSubTitleLabel("メールアドレス")// メールアドレスラベル
@@ -19,18 +24,22 @@ class RegisterViewController: UIViewController {
     var registerButton = UIButton.createButton("新規登録")// 新規登録ボタン
     var toLoginButton  = UIButton.createSubButton("既にアカウントをお持ちの方はこちらから")// ログイン画面へ
     
-    
     //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayout()
+        setupBinding()
         toLoginButton.addTarget(self, action: #selector(toLogin), for: .touchUpInside)
+//        registerButton.addTarget(self, action: #selector(register), for: .touchUpInside)
     }
     
     private func setupLayout() {
         view.backgroundColor = UIColor(named: "main")
         // 戻るボタンを隠す
         self.navigationItem.hidesBackButton = true
+        
+        passwordTextField.isSecureTextEntry = true
+        checkPasswordTextField.isSecureTextEntry = true
        
         let stackviews = [
             [emailLabel,emailTextField],
@@ -75,9 +84,44 @@ class RegisterViewController: UIViewController {
                                 topPadding: 10)
     }
     
+    private func setupBinding() {
+        emailTextField.rx.text
+            .asDriver()
+            .drive { text in
+                self.viewModel.emailInput.onNext(text ?? "")
+            }
+            .disposed(by: disposeBag)
+        
+        passwordTextField.rx.text
+            .asDriver()
+            .drive { text in
+                self.viewModel.passwordInput.onNext(text ?? "")
+            }
+            .disposed(by: disposeBag)
+        
+        checkPasswordTextField.rx.text
+            .asDriver()
+            .drive { text in
+                self.viewModel.checkPasswordInput.onNext(text ?? "")
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel.validRegisterDriver
+            .drive { validAll in
+                self.registerButton.isEnabled = validAll
+                self.registerButton.backgroundColor = validAll ? UIColor(named: "sub") : UIColor.systemGray
+            }
+            .disposed(by: disposeBag)
+            
+    }
+    
     // ログイン画面に戻る
     @objc private func toLogin() {
         self.navigationController?.popViewController(animated: true)
     }
+    
+//    @objc func register() {
+//        print("登録します")
+//    }
     
 }

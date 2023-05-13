@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C992E9362A0F6C89003C0F69 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C992E9352A0F6C89003C0F69 /* RegisterViewModel.swift */; };
+		C992E9382A0F8953003C0F69 /* String_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C992E9372A0F8953003C0F69 /* String_Extension.swift */; };
 		C9A23E0B2A0CDA1C00B2F5DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A23E0A2A0CDA1C00B2F5DF /* AppDelegate.swift */; };
 		C9A23E0D2A0CDA1C00B2F5DF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A23E0C2A0CDA1C00B2F5DF /* SceneDelegate.swift */; };
 		C9A23E0F2A0CDA1C00B2F5DF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A23E0E2A0CDA1C00B2F5DF /* HomeViewController.swift */; };
@@ -39,6 +41,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C992E9352A0F6C89003C0F69 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
+		C992E9372A0F8953003C0F69 /* String_Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String_Extension.swift; sourceTree = "<group>"; };
 		C9A23E072A0CDA1C00B2F5DF /* MichinoEkiApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MichinoEkiApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9A23E0A2A0CDA1C00B2F5DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C9A23E0C2A0CDA1C00B2F5DF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -83,6 +87,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C992E9342A0F6C55003C0F69 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C992E9352A0F6C89003C0F69 /* RegisterViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		C9A23DFE2A0CDA1C00B2F5DF = {
 			isa = PBXGroup;
 			children = (
@@ -102,10 +114,11 @@
 		C9A23E092A0CDA1C00B2F5DF /* MichinoEkiApp */ = {
 			isa = PBXGroup;
 			children = (
+				C9A23E1E2A0CDA4700B2F5DF /* Resourse */,
 				C9A23E3C2A0CDF0D00B2F5DF /* Extension */,
 				C9A23E352A0CDD5500B2F5DF /* Model */,
 				C9A23E1F2A0CDA5400B2F5DF /* View */,
-				C9A23E1E2A0CDA4700B2F5DF /* Resourse */,
+				C992E9342A0F6C55003C0F69 /* ViewModel */,
 				C9A23E152A0CDA1D00B2F5DF /* LaunchScreen.storyboard */,
 				C9A23E182A0CDA1D00B2F5DF /* Info.plist */,
 			);
@@ -164,6 +177,7 @@
 				C9A23E512A0DB86000B2F5DF /* UILabel_Extension.swift */,
 				C9A23E532A0DC88B00B2F5DF /* UITextField_Extension.swift */,
 				C9A23E552A0DD10900B2F5DF /* UIButton_Extension.swift */,
+				C992E9372A0F8953003C0F69 /* String_Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -266,6 +280,7 @@
 				C9A23E3B2A0CDD9300B2F5DF /* Station.swift in Sources */,
 				C9A23E262A0CDBFA00B2F5DF /* SearchViewController.swift in Sources */,
 				C9A23E2C2A0CDC3300B2F5DF /* ProfileEditViewController.swift in Sources */,
+				C992E9382A0F8953003C0F69 /* String_Extension.swift in Sources */,
 				C9A23E222A0CDBD700B2F5DF /* LoginViewController.swift in Sources */,
 				C9A23E562A0DD10900B2F5DF /* UIButton_Extension.swift in Sources */,
 				C9A23E302A0CDCBB00B2F5DF /* CreateMemoryViewController.swift in Sources */,
@@ -273,6 +288,7 @@
 				C9A23E332A0CDD2F00B2F5DF /* MemoryTableViewCell.swift in Sources */,
 				C9A23E522A0DB86000B2F5DF /* UILabel_Extension.swift in Sources */,
 				C9A23E542A0DC88B00B2F5DF /* UITextField_Extension.swift in Sources */,
+				C992E9362A0F6C89003C0F69 /* RegisterViewModel.swift in Sources */,
 				C9A23E242A0CDBE600B2F5DF /* RegisterViewController.swift in Sources */,
 				C9A23E2E2A0CDC4F00B2F5DF /* StationDetailViewController.swift in Sources */,
 				C9A23E0F2A0CDA1C00B2F5DF /* HomeViewController.swift in Sources */,
