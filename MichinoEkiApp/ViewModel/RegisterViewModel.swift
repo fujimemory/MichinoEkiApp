@@ -8,6 +8,10 @@
 import RxCocoa
 import RxSwift
 import Foundation
+import FirebaseAuth
+import FirebaseStorage
+import FirebaseFirestore
+
 
 protocol RegisterViewModelInput {
     var emailInput : AnyObserver<String> { get }
@@ -68,14 +72,18 @@ class RegisterViewModel : RegisterViewModelInput,
                 pass == check
             }
             .subscribe { event in
-                print(event ? "押せる" : "押せない")
                 self.validRegisterSubject.onNext(event)
             }
             .disposed(by: disposeBag)
+    }
+    
+    func createUser(email: String?,pass: String?){
+        guard let email = email,
+              let pass = pass else { return }
         
-        
-        
-        
+        Auth.addUser(email: email, pass: pass) { result in
+            print(result ? "success" : "failure")
+        }
         
     }
 }

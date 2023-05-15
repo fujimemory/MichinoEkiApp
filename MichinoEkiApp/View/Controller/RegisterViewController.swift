@@ -32,7 +32,19 @@ class RegisterViewController: UIViewController {
         toLoginButton.addTarget(self, action: #selector(toLogin), for: .touchUpInside)
 //        registerButton.addTarget(self, action: #selector(register), for: .touchUpInside)
     }
+  
+    // ログイン画面に戻る
+    @objc private func toLogin() {
+        self.navigationController?.popViewController(animated: true)
+    }
     
+//    @objc func register() {
+//        print("登録します")
+//    }
+}
+
+
+extension RegisterViewController {
     private func setupLayout() {
         view.backgroundColor = UIColor(named: "main")
         // 戻るボタンを隠す
@@ -112,16 +124,15 @@ class RegisterViewController: UIViewController {
                 self.registerButton.backgroundColor = validAll ? UIColor(named: "sub") : UIColor.systemGray
             }
             .disposed(by: disposeBag)
+        
+        registerButton.rx.tap
+            .asDriver()
+            .drive { [weak self] _  in
+                self?.viewModel.createUser(email: self?.emailTextField.text,
+                                     pass: self?.passwordTextField.text)
+            }
+            .disposed(by: disposeBag)
             
     }
-    
-    // ログイン画面に戻る
-    @objc private func toLogin() {
-        self.navigationController?.popViewController(animated: true)
-    }
-    
-//    @objc func register() {
-//        print("登録します")
-//    }
-    
+            
 }

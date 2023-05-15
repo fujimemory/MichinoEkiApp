@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		C992E9362A0F6C89003C0F69 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C992E9352A0F6C89003C0F69 /* RegisterViewModel.swift */; };
 		C992E9382A0F8953003C0F69 /* String_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C992E9372A0F8953003C0F69 /* String_Extension.swift */; };
+		C992E93A2A106224003C0F69 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C992E9392A106224003C0F69 /* GoogleService-Info.plist */; };
+		C992E93C2A107CF6003C0F69 /* FireBase_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C992E93B2A107CF6003C0F69 /* FireBase_Extension.swift */; };
 		C9A23E0B2A0CDA1C00B2F5DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A23E0A2A0CDA1C00B2F5DF /* AppDelegate.swift */; };
 		C9A23E0D2A0CDA1C00B2F5DF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A23E0C2A0CDA1C00B2F5DF /* SceneDelegate.swift */; };
 		C9A23E0F2A0CDA1C00B2F5DF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A23E0E2A0CDA1C00B2F5DF /* HomeViewController.swift */; };
@@ -43,6 +45,8 @@
 /* Begin PBXFileReference section */
 		C992E9352A0F6C89003C0F69 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		C992E9372A0F8953003C0F69 /* String_Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String_Extension.swift; sourceTree = "<group>"; };
+		C992E9392A106224003C0F69 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C992E93B2A107CF6003C0F69 /* FireBase_Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBase_Extension.swift; sourceTree = "<group>"; };
 		C9A23E072A0CDA1C00B2F5DF /* MichinoEkiApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MichinoEkiApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9A23E0A2A0CDA1C00B2F5DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C9A23E0C2A0CDA1C00B2F5DF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -121,6 +125,7 @@
 				C992E9342A0F6C55003C0F69 /* ViewModel */,
 				C9A23E152A0CDA1D00B2F5DF /* LaunchScreen.storyboard */,
 				C9A23E182A0CDA1D00B2F5DF /* Info.plist */,
+				C992E9392A106224003C0F69 /* GoogleService-Info.plist */,
 			);
 			path = MichinoEkiApp;
 			sourceTree = "<group>";
@@ -178,6 +183,7 @@
 				C9A23E532A0DC88B00B2F5DF /* UITextField_Extension.swift */,
 				C9A23E552A0DD10900B2F5DF /* UIButton_Extension.swift */,
 				C992E9372A0F8953003C0F69 /* String_Extension.swift */,
+				C992E93B2A107CF6003C0F69 /* FireBase_Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -265,6 +271,7 @@
 			files = (
 				C9A23E342A0CDD2F00B2F5DF /* MemoryTableViewCell.xib in Resources */,
 				C9A23E172A0CDA1D00B2F5DF /* LaunchScreen.storyboard in Resources */,
+				C992E93A2A106224003C0F69 /* GoogleService-Info.plist in Resources */,
 				C9A23E142A0CDA1D00B2F5DF /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -290,6 +297,7 @@
 				C9A23E542A0DC88B00B2F5DF /* UITextField_Extension.swift in Sources */,
 				C992E9362A0F6C89003C0F69 /* RegisterViewModel.swift in Sources */,
 				C9A23E242A0CDBE600B2F5DF /* RegisterViewController.swift in Sources */,
+				C992E93C2A107CF6003C0F69 /* FireBase_Extension.swift in Sources */,
 				C9A23E2E2A0CDC4F00B2F5DF /* StationDetailViewController.swift in Sources */,
 				C9A23E0F2A0CDA1C00B2F5DF /* HomeViewController.swift in Sources */,
 				C9A23E0B2A0CDA1C00B2F5DF /* AppDelegate.swift in Sources */,
