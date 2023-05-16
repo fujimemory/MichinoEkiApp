@@ -77,12 +77,12 @@ class RegisterViewModel : RegisterViewModelInput,
             .disposed(by: disposeBag)
     }
     
-    func createUser(email: String?,pass: String?){
+    func createUser(email: String?,pass: String?,completion : @escaping (Bool) -> Void){
         guard let email = email,
               let pass = pass else { return }
         
         Auth.addUser(email: email, pass: pass) { result in
-            print(result ? "success" : "failure")
+            completion(result)
         }
         
     }

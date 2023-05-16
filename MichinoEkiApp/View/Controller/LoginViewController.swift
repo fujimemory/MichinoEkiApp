@@ -9,7 +9,7 @@ import UIKit
 
 class LoginViewController: UIViewController {
     //MARK: - Property
-    
+    private var viewModel = LoginViewModel()
     //MARK: - UIView
     var titleLabel = UILabel.createTitleLabel("ログイン")// タイトル
     var emailLabel = UILabel.createSubTitleLabel("メールアドレス")// メールアドレスラベル
@@ -68,6 +68,8 @@ class LoginViewController: UIViewController {
                                 centerX: view.centerXAnchor,
                                 topPadding: 10)
     }
+    
+    
     
     // 登録画面への遷移
     @objc private func toRegister() {

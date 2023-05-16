@@ -18,7 +18,7 @@ class RegisterViewController: UIViewController {
     var emailLabel = UILabel.createSubTitleLabel("メールアドレス")// メールアドレスラベル
     var emailTextField = UITextField.createTextField("メールアドレス")// メールアドレステキストフィールド
     var passwordLabel = UILabel.createSubTitleLabel("パスワード")// パスワードラベル
-    var passwordTextField = UITextField.createTextField("パスワード")// パスワードテキストフィールド
+    var passwordTextField = UITextField.createTextField("半角英数字8文字以上")// パスワードテキストフィールド
     var checkPasswordLabel = UILabel.createSubTitleLabel("パスワード（確認用）")// 確認用パスワードラベル
     var checkPasswordTextField = UITextField.createTextField("パスワード（確認用）")// 確認用パスワードテキストフィールド
     var registerButton = UIButton.createButton("新規登録")// 新規登録ボタン
@@ -129,7 +129,14 @@ extension RegisterViewController {
             .asDriver()
             .drive { [weak self] _  in
                 self?.viewModel.createUser(email: self?.emailTextField.text,
-                                     pass: self?.passwordTextField.text)
+                                           pass: self?.passwordTextField.text){ result in
+                    if result {
+                        self?.dismiss(animated: true)
+                    }else {
+                        print("新規登録に失敗しました")
+                    }
+                }
+                
             }
             .disposed(by: disposeBag)
             

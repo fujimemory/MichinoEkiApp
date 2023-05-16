@@ -14,7 +14,9 @@ extension Auth {
     static func addUser(email:String,pass:String,completion:@escaping (Bool) -> Void){
         auth().createUser(withEmail: email, password: pass) { auth, err in
             if let err {
+                // TODO: エラーハンドリングを行う
                 print("ユーザ登録に失敗しました",err)
+                
             }
             // ユーザ登録に成功した時の処理
             guard let uid = auth?.user.uid else { return }

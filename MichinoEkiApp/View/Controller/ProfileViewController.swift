@@ -6,24 +6,39 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class ProfileViewController: UIViewController {
+    
+    let logoutButton = UIButton.createSubButton("ログアウト")
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        view.backgroundColor = .orange
+        view.addSubview(logoutButton)
+        logoutButton.anchor(centerY: view.centerYAnchor, centerX: view.centerXAnchor)
+        logoutButton.addTarget(self, action: #selector(logout), for: .touchUpInside)
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @objc private func logout() {
+        do {
+           try Auth.auth().signOut()
+            moveToLogin()
+            
+        }catch {
+            print(error.localizedDescription)
+        }
     }
-    */
-
+    
+    private func moveToLogin() {
+        if Auth.auth().currentUser?.uid == nil {
+            let login = LoginViewController()
+            let nav = UINavigationController(rootViewController: login)
+            nav.modalPresentationStyle = .fullScreen
+            self.present(nav, animated: true)
+        }
+    }
 }
