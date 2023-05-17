@@ -25,6 +25,7 @@ class HomeTabBerController: UITabBarController {
 }
 
 extension HomeTabBerController{
+    // レイアウト
     private func setupLayout(){
         let search = SearchViewController()
         search.tabBarItem = UITabBarItem(title: "検索",
@@ -44,7 +45,7 @@ extension HomeTabBerController{
         tabBar.tintColor = UIColor(named: "main")
         tabBar.backgroundColor = .systemGray4
     }
-    
+    // ログイン画面への遷移
     private func moveToLogin() {
         if Auth.auth().currentUser?.uid == nil {
             let login = LoginViewController()

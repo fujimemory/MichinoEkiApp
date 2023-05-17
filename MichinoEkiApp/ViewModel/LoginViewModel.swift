@@ -8,6 +8,7 @@
 import Foundation
 import RxCocoa
 import RxSwift
+import FirebaseAuth
 
 protocol LoginInput {
     var emailInput : AnyObserver<String> { get }
@@ -55,5 +56,21 @@ class LoginViewModel : LoginInput,LoginOutput {
             }
             .disposed(by: disposeBag)
         
+    }
+    
+    //MARK: - other Methods
+    func login(email:String?,password: String?,completion : @escaping (Bool) -> Void){
+        guard let email = email,
+              let password = password else { return }
+        Auth.auth().signIn(withEmail: email, password: password) { result, err in
+            if let err {
+                // TODO: エラーハンドリングをする
+                print("ログインに失敗しました。",err)
+                completion(false)
+            }
+            print("ログインに成功")
+            completion(true)
+           
+        }
     }
 }

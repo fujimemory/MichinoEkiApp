@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import RxSwift
 
 class LoginViewController: UIViewController {
     //MARK: - Property
+    private let disposeBag = DisposeBag()
     private var viewModel = LoginViewModel()
     //MARK: - UIView
     var titleLabel = UILabel.createTitleLabel("ログイン")// タイトル
@@ -24,10 +26,15 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
 
         setupLayout()
+        setupBinding()
         toRegisterButton.addTarget(self, action: #selector(toRegister), for: .touchUpInside)
     }
-    
+
+}
+
+extension LoginViewController {
     //MARK: - Function
+    // レイアウト
     private func setupLayout() {
         view.backgroundColor = UIColor(named: "main")
        
@@ -69,12 +76,49 @@ class LoginViewController: UIViewController {
                                 topPadding: 10)
     }
     
-    
-    
     // 登録画面への遷移
     @objc private func toRegister() {
         let nextVC = RegisterViewController()
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
     
+    // ViewModelとのバインディング
+    private func setupBinding() {
+        emailTextField.rx.text
+            .asDriver()
+            .drive { text in
+                self.viewModel.emailInput.onNext(text ?? "")
+            }
+            .disposed(by: disposeBag)
+        
+        passwordTextField.rx.text
+            .asDriver()
+            .drive { text in
+                self.viewModel.passwordInput.onNext(text ?? "")
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel.validLoginDriver
+            .asDriver()
+            .drive { valid  in
+                self.loginButton.isEnabled = valid
+                self.loginButton.backgroundColor = valid ? UIColor(named: "sub") : UIColor.systemGray
+            }
+            .disposed(by: disposeBag)
+        
+        loginButton.rx.tap
+            .asDriver()
+            .drive {[weak self] _ in
+                print("ログインします")
+                self?.viewModel.login(email: self?.emailTextField.text,
+                                password: self?.passwordTextField.text) { result in
+                    if result {
+                        self?.dismiss(animated: true)
+                    }
+                }
+            }
+            .disposed(by: disposeBag)
+    }
+    
+  
 }
