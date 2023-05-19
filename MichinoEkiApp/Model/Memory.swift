@@ -6,3 +6,12 @@
 //
 
 import Foundation
+import Firebase
+
+struct Memory{
+    var id : String
+    var text : String
+    var image : String
+    var createdAt : Timestamp
+    var ownerID : String
+}

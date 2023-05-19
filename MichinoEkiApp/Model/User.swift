@@ -6,3 +6,13 @@
 //
 
 import Foundation
+import Firebase
+
+struct User {
+    var uid : String
+    var email: String
+    var createdAt:Timestamp
+    var name: String
+    var profileImage: String
+    var stations : [String]// 道の駅のIDを格納する
+}

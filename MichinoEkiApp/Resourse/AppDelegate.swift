@@ -20,9 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
-//        let nav = UINavigationController(rootViewController: LoginViewController())
-//        window?.rootViewController = nav
         window?.rootViewController = HomeTabBerController()
+//        window?.rootViewController = StationDetailViewController()
 
         
         return true

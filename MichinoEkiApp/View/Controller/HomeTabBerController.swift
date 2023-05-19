@@ -27,23 +27,25 @@ class HomeTabBerController: UITabBarController {
 extension HomeTabBerController{
     // レイアウト
     private func setupLayout(){
-        let search = SearchViewController()
-        search.tabBarItem = UITabBarItem(title: "検索",
-                                       image: UIImage(systemName: "magnifyingglass"),
-                                       tag: 0)
         let map = MapViewController()
         map.tabBarItem = UITabBarItem(title: "地図",
                                        image: UIImage(systemName: "mappin.and.ellipse"),
+                                       tag: 0)
+        
+        let search = SearchViewController()
+        search.tabBarItem = UITabBarItem(title: "検索",
+                                       image: UIImage(systemName: "magnifyingglass"),
                                        tag: 1)
+       
         let profile = ProfileViewController()
         profile.tabBarItem = UITabBarItem(title: "プロフィール",
                                        image:  UIImage(systemName: "person"),
                                        tag: 2)
         
-        viewControllers = [search,map,profile]
+        viewControllers = [map,search,profile]
         
         tabBar.tintColor = UIColor(named: "main")
-        tabBar.backgroundColor = .systemGray4
+        tabBar.backgroundColor = .systemGray6
     }
     // ログイン画面への遷移
     private func moveToLogin() {

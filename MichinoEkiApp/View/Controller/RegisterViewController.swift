@@ -32,6 +32,10 @@ class RegisterViewController: UIViewController {
         toLoginButton.addTarget(self, action: #selector(toLogin), for: .touchUpInside)
 //        registerButton.addTarget(self, action: #selector(register), for: .touchUpInside)
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
   
     // ログイン画面に戻る
     @objc private func toLogin() {

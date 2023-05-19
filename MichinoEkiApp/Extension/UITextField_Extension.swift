@@ -10,7 +10,10 @@ import UIKit
 extension UITextField {
     static func createTextField(_ placeholder: String) -> UITextField {
         let field = UITextField(frame: .zero)
-        field.placeholder = placeholder
+        field.textColor = .darkText
+//        field.placeholder = placeholder
+        field.attributedPlaceholder = NSAttributedString(string: placeholder,
+                                                         attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
         field.backgroundColor = .white
         field.layer.cornerRadius = 10
         field.translatesAutoresizingMaskIntoConstraints = false

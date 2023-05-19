@@ -29,6 +29,10 @@ class LoginViewController: UIViewController {
         setupBinding()
         toRegisterButton.addTarget(self, action: #selector(toRegister), for: .touchUpInside)
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
 
 }
 
