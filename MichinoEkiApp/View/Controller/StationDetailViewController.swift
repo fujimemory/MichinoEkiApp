@@ -75,6 +75,7 @@ class StationDetailViewController: UIViewController {
         super.viewDidLoad()
         setupLayout()
         dismissButton.addTarget(self, action: #selector(back), for: .touchUpInside)
+        checkInButton.addTarget(self, action: #selector(checkIn), for: .touchUpInside)
 
     }
     
@@ -122,6 +123,12 @@ extension StationDetailViewController{
     }
     @objc private func back(){
         self.dismiss(animated: true)
+    }
+    
+    @objc private func checkIn(){
+        let next = CreateMemoryViewController()
+        next.modalPresentationStyle = .fullScreen
+        self.present(next, animated: true)
     }
    
 }

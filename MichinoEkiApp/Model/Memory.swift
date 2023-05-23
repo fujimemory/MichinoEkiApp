@@ -13,5 +13,6 @@ struct Memory{
     var text : String
     var image : String
     var createdAt : Timestamp
-    var ownerID : String
+    var userID : String
+    var stationID : String
 }

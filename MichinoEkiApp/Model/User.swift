@@ -14,5 +14,5 @@ struct User {
     var createdAt:Timestamp
     var name: String
     var profileImage: String
-    var stations : [String]// 道の駅のIDを格納する
+    var introduction : String
 }

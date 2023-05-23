@@ -41,6 +41,7 @@ extension LoginViewController {
     // レイアウト
     private func setupLayout() {
         view.backgroundColor = UIColor(named: "main")
+        passwordTextField.isSecureTextEntry = true
        
         let stackviews = [[emailLabel,emailTextField],[passwordLabel,passwordTextField]].map { views in
             let stackview = UIStackView(arrangedSubviews: views)
