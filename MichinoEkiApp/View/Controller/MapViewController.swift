@@ -13,12 +13,10 @@ class MapViewController: UIViewController {
     //MARK: Properties
     var locationManager : CLLocationManager?
     var userHeading: CLLocationDirection?
+    private let mapViewModel = MapViewModel()
     
     
-    var stations : [Station] = [
-        Station(id: "", name: "佐渡", latitude: 38.083889, longitude: 138.436111, url: ""),
-        Station(id: "", name: "阿賀野", latitude: 37.738056, longitude: 139.307222, url: ""),
-    ]
+    var stations = [Station]()
     
     //MARK: UIView
     lazy var mapView :MKMapView = {
@@ -57,15 +55,16 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configulation()
+        fetchSomeInfo()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5){
+            self.addAnnotation()
+        }
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // 仮
-        for station in stations {
-            self.addAnnotation(latitude: station.latitude, longitude: station.longitude, title: station.name)
-        }
+        addAnnotation()
     }
    
 }
@@ -103,6 +102,17 @@ extension MapViewController {
         
     }
     
+    func fetchSomeInfo(){
+        //駅情報の取得
+        mapViewModel.fetchStations { optionalStation in
+            if let station = optionalStation {
+                self.stations.append(station)
+            }
+        }
+        // TODO: ユーザ情報の取得
+        print("ユーザ情報取得")
+    }
+    
     func initMap() {
         // 縮尺を設定
         var region:MKCoordinateRegion = mapView.region
@@ -136,15 +146,13 @@ extension MapViewController {
         }
     }
     // アノテーション（地図ピン追加）
-    private func addAnnotation (latitude : CLLocationDegrees,// 緯度
-                                longitude: CLLocationDegrees ,// 経度
-                                title : String){
-        let annotation = MKPointAnnotation()
-        
-        annotation.coordinate = CLLocationCoordinate2DMake(latitude, longitude)
-        annotation.title = title
-    
-        self.mapView.addAnnotation(annotation)
+    private func addAnnotation (){
+        for station in self.stations{
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = CLLocationCoordinate2DMake(station.latitude, station.longitude)
+            annotation.title = station.name
+            self.mapView.addAnnotation(annotation)
+        }
     }
     
     private func addHeadingView(toAnnotationView annotationView: MKAnnotationView) {

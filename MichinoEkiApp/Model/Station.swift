@@ -14,6 +14,14 @@ struct Station {
     let longitude : Double
     let url : String
     
+    init(dic : [String : Any]){
+        self.id = dic["id"] as? String ?? ""
+        self.name = dic["name"] as? String ?? ""
+        self.latitude = dic["latitude"] as? Double ?? 0
+        self.longitude = dic["longitude"] as? Double ?? 0
+        self.url = dic["url"] as? String ?? ""
+    }
+    
     
 //    static func latitudeCaliculate(degrees:Double,minutes:Double,seconds: Double) -> Double{
 //        let hoge = seconds / 60 + minutes

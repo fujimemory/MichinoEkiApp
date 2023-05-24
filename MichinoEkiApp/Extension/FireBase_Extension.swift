@@ -29,6 +29,7 @@ extension Auth {
 }
 
 extension Firestore {
+    // ユーザ情報の保存
     static func addUserInfoToFirestore(uid: String,email: String,completion : @escaping (Bool)-> Void){
         // 半角英数字からランダムな文字列を作る
         let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
@@ -38,8 +39,22 @@ extension Firestore {
             "uid" : uid,
             "createdAt" : Timestamp(),
             "email" : email,
-            "name" : name
+            "name" : name,
+            "profileImageURL" : "https://firebasestorage.googleapis.com/v0/b/michinoekiapp-a5e41.appspot.com/o/defaultUserImage.png?alt=media&token=cb1ca16c-cf60-4521-a5ae-e53af5c7f339",
+            "introduction" : ""
+            
         ] as [String:Any]
+        
+        /*
+         struct User {
+             var uid : String
+             var email: String
+             var createdAt:Timestamp
+             var name: String
+             var profileImageURL: String
+             var introduction : String
+         }
+         */
         
         firestore().collection("users").document(uid).setData(doc) { err in
             if let err {
@@ -50,4 +65,22 @@ extension Firestore {
             completion(true)
         }
     }
+    
+    // 道の駅情報の取得
+    static func fetchStationFromFirestore(completion: @escaping (Result<Station,Error>) -> Void){
+        let ref = Firestore.firestore()
+        ref.collection("stations").getDocuments { snapshots, err in
+            if let err {
+                print("ユーザ情報の取得に失敗しました。",err)
+                completion(.failure(err))
+            }
+            snapshots?.documents.forEach({ snapshot in
+                let dic = snapshot.data()
+                let station = Station(dic: dic)
+                completion(.success(station))
+            })
+        }
+    }
+    
+    
 }
