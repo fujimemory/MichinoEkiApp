@@ -38,11 +38,12 @@ extension HomeTabBerController{
                                        tag: 1)
        
         let profile = ProfileViewController()
-        profile.tabBarItem = UITabBarItem(title: "プロフィール",
+        let profileNav = UINavigationController(rootViewController: profile)
+        profileNav.tabBarItem = UITabBarItem(title: "プロフィール",
                                        image:  UIImage(systemName: "person"),
                                        tag: 2)
         
-        viewControllers = [map,search,profile]
+        viewControllers = [map,search,profileNav]
         
         tabBar.tintColor = UIColor(named: "main")
         tabBar.backgroundColor = .systemGray6

@@ -13,6 +13,8 @@
 		C992E93C2A107CF6003C0F69 /* FireBase_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C992E93B2A107CF6003C0F69 /* FireBase_Extension.swift */; };
 		C992E93E2A135E4B003C0F69 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C992E93D2A135E4B003C0F69 /* LoginViewModel.swift */; };
 		C992E9402A1D0F77003C0F69 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C992E93F2A1D0F76003C0F69 /* MapViewModel.swift */; };
+		C992E96D2A29B0A8003C0F69 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C992E96B2A29B0A8003C0F69 /* ProfileTableViewCell.swift */; };
+		C992E96E2A29B0A8003C0F69 /* ProfileTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C992E96C2A29B0A8003C0F69 /* ProfileTableViewCell.xib */; };
 		C9A23E0B2A0CDA1C00B2F5DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A23E0A2A0CDA1C00B2F5DF /* AppDelegate.swift */; };
 		C9A23E0D2A0CDA1C00B2F5DF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A23E0C2A0CDA1C00B2F5DF /* SceneDelegate.swift */; };
 		C9A23E0F2A0CDA1C00B2F5DF /* HomeTabBerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A23E0E2A0CDA1C00B2F5DF /* HomeTabBerController.swift */; };
@@ -51,6 +53,8 @@
 		C992E93B2A107CF6003C0F69 /* FireBase_Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBase_Extension.swift; sourceTree = "<group>"; };
 		C992E93D2A135E4B003C0F69 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		C992E93F2A1D0F76003C0F69 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		C992E96B2A29B0A8003C0F69 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
+		C992E96C2A29B0A8003C0F69 /* ProfileTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileTableViewCell.xib; sourceTree = "<group>"; };
 		C9A23E072A0CDA1C00B2F5DF /* MichinoEkiApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MichinoEkiApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9A23E0A2A0CDA1C00B2F5DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C9A23E0C2A0CDA1C00B2F5DF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -199,6 +203,8 @@
 			children = (
 				C9A23E312A0CDD2F00B2F5DF /* MemoryTableViewCell.swift */,
 				C9A23E322A0CDD2F00B2F5DF /* MemoryTableViewCell.xib */,
+				C992E96B2A29B0A8003C0F69 /* ProfileTableViewCell.swift */,
+				C992E96C2A29B0A8003C0F69 /* ProfileTableViewCell.xib */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -279,6 +285,7 @@
 				C9A23E172A0CDA1D00B2F5DF /* LaunchScreen.storyboard in Resources */,
 				C992E93A2A106224003C0F69 /* GoogleService-Info.plist in Resources */,
 				C9A23E142A0CDA1D00B2F5DF /* Assets.xcassets in Resources */,
+				C992E96E2A29B0A8003C0F69 /* ProfileTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,6 +319,7 @@
 				C9A23E0D2A0CDA1C00B2F5DF /* SceneDelegate.swift in Sources */,
 				C9A23E2A2A0CDC1D00B2F5DF /* ProfileViewController.swift in Sources */,
 				C9A23E282A0CDC0B00B2F5DF /* MapViewController.swift in Sources */,
+				C992E96D2A29B0A8003C0F69 /* ProfileTableViewCell.swift in Sources */,
 				C992E9402A1D0F77003C0F69 /* MapViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
