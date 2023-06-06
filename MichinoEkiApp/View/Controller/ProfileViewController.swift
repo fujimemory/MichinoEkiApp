@@ -47,8 +47,11 @@ extension ProfileViewController{
     }
     
     func setupTableView(){
+        self.tableView.backgroundColor = .white
         self.tableView.dataSource = self
         self.tableView.delegate = self
+        
+        self.tableView.tableHeaderView = UIView(frame: CGRect.zero)
         self.tableView.register(UINib(nibName: "ProfileTableViewCell", bundle: nil),
                                 forCellReuseIdentifier: profileCellID)
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: memoryCellID)
@@ -56,13 +59,13 @@ extension ProfileViewController{
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
+        let threshold: CGFloat = 50 // タイトル表示の閾値（適宜調整してください）
         
-        if offsetY > 40 {
-            print("スクロールした")
-            self.navigationController?.setNavigationBarHidden(false, animated: true)
+        if offsetY > threshold {
+            // ユーザ名が消えた場合にNavigationControllerのタイトルを表示する
+            navigationItem.title = "ユーザ名"
         } else {
-            print("戻った")
-            self.navigationController?.setNavigationBarHidden(true, animated: true)
+            navigationItem.title = nil // ユーザ名が表示される範囲内ではタイトルを空にする
         }
     }
 }
@@ -85,6 +88,7 @@ extension ProfileViewController : UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0{
             let cell = tableView.dequeueReusableCell(withIdentifier: profileCellID, for: indexPath) as! ProfileTableViewCell
+            cell.viewController = self
             return cell
         }else {
             let cell = tableView.dequeueReusableCell(withIdentifier: memoryCellID, for: indexPath)

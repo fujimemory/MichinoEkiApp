@@ -6,17 +6,23 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class ProfileEditViewController: UIViewController {
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        view.backgroundColor = .lightGray
+        let label = UILabel()
+        label.text = "プロフィール編集画面"
+        
+        view.addSubview(label)
+        label.anchor(centerY: view.centerYAnchor, centerX: view.centerXAnchor)
+       
     }
     
-
+    
     
 
 }
