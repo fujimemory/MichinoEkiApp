@@ -12,6 +12,13 @@ class ProfileTableViewCell: UITableViewCell {
     //MARK: - Properties
     var viewController : UIViewController?
     
+    var user : User?{
+        didSet{
+            guard let user else{return}
+            userNameLabel.text = user.name
+        }
+    }
+    
     //MARK: - UIViews
     @IBOutlet var profileImage: UIImageView!
     @IBOutlet var userNameLabel: UILabel!

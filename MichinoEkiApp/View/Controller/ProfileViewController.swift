@@ -7,11 +7,14 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseFirestore
 
 class ProfileViewController: UIViewController {
     //MARK: - Properties
     let profileCellID = "profileID"
     let memoryCellID = "MemoryID"
+    
+    var user : User?
     
     //MARK: - UIViews
     let tableView : UITableView = {
@@ -19,13 +22,12 @@ class ProfileViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
-    
-    
-
 
     //MARK: - LifeCycles
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("ProfileViewController: viewDidLoad")
+        fetchUser()
         configulation()
         
     }
@@ -56,6 +58,18 @@ extension ProfileViewController{
                                 forCellReuseIdentifier: profileCellID)
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: memoryCellID)
     }
+    
+        func fetchUser(){ // ログインしているユーザの情報を受け取る
+            guard let uid = Auth.auth().currentUser?.uid else {return}
+            Firestore.fetchUserFromFirestore(uid: uid) { user in
+                print(user)
+                self.user = user
+            }
+//            DispatchQueue.main.async {
+//                self.tableView.reloadData()
+//            }
+            self.tableView.reloadData()
+        }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
@@ -89,6 +103,8 @@ extension ProfileViewController : UITableViewDelegate,UITableViewDataSource {
         if indexPath.section == 0{
             let cell = tableView.dequeueReusableCell(withIdentifier: profileCellID, for: indexPath) as! ProfileTableViewCell
             cell.viewController = self
+//            cell.userNameLabel.text = user?.name
+            cell.user = self.user
             return cell
         }else {
             let cell = tableView.dequeueReusableCell(withIdentifier: memoryCellID, for: indexPath)
@@ -96,6 +112,8 @@ extension ProfileViewController : UITableViewDelegate,UITableViewDataSource {
             return cell
         }
     }
+    
+   
     
      
     

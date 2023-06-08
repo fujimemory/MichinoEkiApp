@@ -82,5 +82,33 @@ extension Firestore {
         }
     }
     
-    
+    // ユーザ情報の取得
+    static func fetchUserFromFirestore(uid : String,completion: @escaping (User) -> Void){
+        let ref = Firestore.firestore().collection("users").document(uid)
+//        ref.getDocument { snapshot, error in
+//            if let document = snapshot,document.exists{
+////                let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+////                print("Document data: \(dataDescription)")
+//                guard let data = document.data() else { return }
+//                let user = User(dic: data)
+//                completion(user)
+////                print(user)
+//            } else {
+//                print("Document does not exist")
+//            }
+//        }
+        
+        ref.addSnapshotListener { snapshot, error in
+            if let document = snapshot,document.exists{
+                guard let data = document.data() else { return }
+                let user = User(dic: data)
+                print(user)
+                completion(user)
+            }else {
+                print("ドキュメントが存在しません")
+            }
+        }
+        
+        
+    }
 }

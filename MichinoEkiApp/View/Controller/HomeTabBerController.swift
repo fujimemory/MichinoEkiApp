@@ -12,8 +12,7 @@ class HomeTabBerController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        setupLayout()
+        self.setupLayout()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -56,7 +55,6 @@ extension HomeTabBerController{
             nav.modalPresentationStyle = .fullScreen
             self.present(nav, animated: false)
         }
-        
     }
 }
 
