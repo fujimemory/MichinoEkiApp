@@ -40,7 +40,7 @@ extension ProfileViewController{
     }
     
     func setupLayout(){
-        title = "ユーザ名"
+//        title = "ユーザ名"
         view.addSubview(tableView)
         tableView.anchor(top: view.topAnchor ,
                          bottom: view.bottomAnchor,
@@ -77,7 +77,7 @@ extension ProfileViewController{
         
         if offsetY > threshold {
             // ユーザ名が消えた場合にNavigationControllerのタイトルを表示する
-            navigationItem.title = "ユーザ名"
+            navigationItem.title = user?.name
         } else {
             navigationItem.title = nil // ユーザ名が表示される範囲内ではタイトルを空にする
         }
