@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseAuth
 import FirebaseFirestore
+//import SDWebImage
 
 class ProfileViewController: UIViewController {
     //MARK: - Properties
@@ -29,7 +30,11 @@ class ProfileViewController: UIViewController {
         print("ProfileViewController: viewDidLoad")
         fetchUser()
         configulation()
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchUser()
     }
 }
 
@@ -65,10 +70,9 @@ extension ProfileViewController{
                 print(user)
                 self.user = user
             }
-//            DispatchQueue.main.async {
-//                self.tableView.reloadData()
-//            }
-            self.tableView.reloadData()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -103,7 +107,6 @@ extension ProfileViewController : UITableViewDelegate,UITableViewDataSource {
         if indexPath.section == 0{
             let cell = tableView.dequeueReusableCell(withIdentifier: profileCellID, for: indexPath) as! ProfileTableViewCell
             cell.viewController = self
-//            cell.userNameLabel.text = user?.name
             cell.user = self.user
             return cell
         }else {
@@ -113,9 +116,7 @@ extension ProfileViewController : UITableViewDelegate,UITableViewDataSource {
         }
     }
     
-   
-    
-     
-    
-    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        UITableView.automaticDimension
+    }    
 }

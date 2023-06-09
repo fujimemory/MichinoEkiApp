@@ -15,7 +15,7 @@ struct User {
     var name: String
     var profileImageURL: String
     var introduction : String
-//    var stationIDs : [String]
+    var stationIDs : [String]
     
     init(dic : [String : Any]){
         self.uid = dic["uid"] as? String ?? ""
@@ -24,5 +24,6 @@ struct User {
         self.name = dic["name"] as? String ?? ""
         self.profileImageURL = dic["profileImageURL"] as? String ?? ""
         self.introduction = dic["introduction"] as? String ?? ""
+        self.stationIDs = dic["stationIDs"] as? [String] ?? []
     }
 }

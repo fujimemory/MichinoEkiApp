@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseAuth
+import SDWebImage
 
 class ProfileTableViewCell: UITableViewCell {
     //MARK: - Properties
@@ -14,8 +15,14 @@ class ProfileTableViewCell: UITableViewCell {
     
     var user : User?{
         didSet{
-            guard let user else{return}
+            guard let user else{ return }
             userNameLabel.text = user.name
+            descriptionLabel.text = user.introduction
+            stationCountLabel.text = String(user.stationIDs.count)
+            // 取得したurlをプロフィール画像に反映させる
+            if let url = URL(string: user.profileImageURL){
+                profileImage.sd_setImage(with: url)
+            }
         }
     }
     
@@ -34,7 +41,6 @@ class ProfileTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
     
@@ -50,8 +56,6 @@ class ProfileTableViewCell: UITableViewCell {
         do {
            try Auth.auth().signOut()
             moveToLogin()
-//            self.dismiss(animated: true)
-
         }catch {
             print(error.localizedDescription)
         }
@@ -71,7 +75,6 @@ class ProfileTableViewCell: UITableViewCell {
         userNameLabel.textColor = .black
         descriptionLabel.textColor = .black
         stationCountLabel.textColor = .black
-        
         userNameLabel.font = .systemFont(ofSize: 24, weight: .semibold)
     }
 }
