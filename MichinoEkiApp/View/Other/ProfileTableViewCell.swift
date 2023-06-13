@@ -47,6 +47,8 @@ class ProfileTableViewCell: UITableViewCell {
     @IBAction func tappedEdit(_ sender: UIButton) {
         print("編集画面へ")
         let editView = ProfileEditViewController()
+        editView.user = self.user
+        editView.modalPresentationStyle = .fullScreen
         viewController?.present(editView, animated: true)
     }
     

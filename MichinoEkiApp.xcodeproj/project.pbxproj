@@ -463,6 +463,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MichinoEkiApp/Info.plist;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "このアプリは位置情報を利用します。";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "このアプリはカメラロールを利用します。";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
@@ -497,6 +498,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MichinoEkiApp/Info.plist;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "このアプリは位置情報を利用します。";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "このアプリはカメラロールを利用します。";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";

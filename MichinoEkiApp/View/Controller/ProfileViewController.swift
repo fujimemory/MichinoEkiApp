@@ -77,7 +77,7 @@ extension ProfileViewController{
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
-        let threshold: CGFloat = 50 // タイトル表示の閾値（適宜調整してください）
+        let threshold: CGFloat = 50 // タイトル表示の閾値（適宜調整）
         
         if offsetY > threshold {
             // ユーザ名が消えた場合にNavigationControllerのタイトルを表示する
