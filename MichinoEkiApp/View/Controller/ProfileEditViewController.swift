@@ -45,11 +45,10 @@ class ProfileEditViewController: UIViewController {
     
     let profileImage : UIImageView = {
         let imageView = UIImageView()
-//        imageView.backgroundColor = .red
         imageView.contentMode = .scaleToFill
         imageView.clipsToBounds = true
+        // このViewにaddSubViewするボタンを押せるようにするために必要
         imageView.isUserInteractionEnabled = true
-//        imageView.layer.cornerRadius = (view.bounds.width / 2.5) / 2
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -58,7 +57,6 @@ class ProfileEditViewController: UIViewController {
         let button = UIButton(type: .system)
         let imageConfig = UIImage.SymbolConfiguration(pointSize: 40, weight: .thin)
         button.setImage(UIImage(systemName: "photo",withConfiguration: imageConfig), for: .normal)
-//        button.isUserInteractionEnabled = true
         button.tintColor = .white
         button.backgroundColor = .black.withAlphaComponent(0.2)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -154,7 +152,6 @@ extension ProfileEditViewController {
                             width: view.bounds.width / 2.5,
                             height: view.bounds.width / 2.5,
                             topPadding: 30)
-//        profileImage.bringSubviewToFront(changeImageButton)
         
         profileImage.layer.cornerRadius = (view.bounds.width / 2.5) / 2
         

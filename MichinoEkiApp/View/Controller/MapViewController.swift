@@ -56,10 +56,6 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
         configulation()
         fetchSomeInfo()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5){
-            self.addAnnotation()
-        }
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -104,9 +100,13 @@ extension MapViewController {
     
     func fetchSomeInfo(){
         //駅情報の取得
-        mapViewModel.fetchStations { optionalStation in
+        self.mapViewModel.fetchStations { optionalStation in
             if let station = optionalStation {
                 self.stations.append(station)
+                DispatchQueue.main.async {
+                    //　取得したら地図にアノテーションを追加
+                    self.addAnnotation()
+                }
             }
         }
         // TODO: ユーザ情報の取得
@@ -204,7 +204,7 @@ extension MapViewController : MKMapViewDelegate{
         
         if annotation is MKUserLocation {return nil}
         
-        guard let title = annotation.title as? String else { return nil }
+        guard let _ = annotation.title as? String else { return nil }
 
 //        let isStamp : Bool = isStampDic[title] ?? false
         let markerView = MKMarkerAnnotationView()
