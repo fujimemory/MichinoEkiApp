@@ -8,9 +8,13 @@
 import UIKit
 import FirebaseAuth
 import SDWebImage
+import RxSwift
+import RxCocoa
 
 class ProfileEditViewController: UIViewController {
-    
+    var disposeBag = DisposeBag()
+    var viewModel = ProfileEditViewModel()
+    var imageIsChanged  = false
     var user : User? {
         didSet{
             if let user = user {
@@ -108,13 +112,14 @@ class ProfileEditViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayout()
+        setupBindings()
         dismissButton.addTarget(self, action: #selector(dismissScreen), for: .touchUpInside)
         changeImageButton.addTarget(self, action: #selector(tappedChangeImageButton), for: .touchUpInside)
     }
 }
 
 extension ProfileEditViewController {
-    func setupLayout(){
+    private func setupLayout(){
         view.backgroundColor = .white
         
         let topStackView = UIStackView(arrangedSubviews: [dismissButton,saveButton])
@@ -171,6 +176,42 @@ extension ProfileEditViewController {
                                    topPadding: 40)
     }
     
+    private func setupBindings(){
+        
+        nameTextfield.rx.text
+            .asDriver()
+            .drive { text in
+                self.viewModel.nameInput.onNext(text ?? "")
+            }
+            .disposed(by: disposeBag)
+        
+        introductionTextView.rx.text
+            .asDriver()
+            .drive { text in
+                self.viewModel.introductionInput.onNext(text ?? "")
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel.validSaveDriver
+            .drive { validAll in
+                print("validAll",validAll)
+                self.saveButton.isEnabled  = validAll
+            }
+            .disposed(by: disposeBag)
+        
+        saveButton.rx.tap
+            .asDriver()
+            .drive { [weak self] _ in
+                guard let self = self else { return }
+                let dic = [
+                    "name": self.nameTextfield.text ?? "",
+                    "introduction" : self.introductionTextView.text ?? ""
+                ]
+               // TODO: 画像が変更された時の処理を追加する
+                
+            }
+    }
+    
     @objc private func dismissScreen(){
         self.dismiss(animated: true)
     }
@@ -192,5 +233,6 @@ extension ProfileEditViewController : UIImagePickerControllerDelegate,UINavigati
         guard let image = info[.originalImage] as? UIImage else { return }
         self.profileImage.image = image
         self.dismiss(animated: true)
+        self.imageIsChanged = true
     }
 }

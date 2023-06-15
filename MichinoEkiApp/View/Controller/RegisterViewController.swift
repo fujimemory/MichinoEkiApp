@@ -143,7 +143,6 @@ extension RegisterViewController {
                 
             }
             .disposed(by: disposeBag)
-            
     }
             
 }

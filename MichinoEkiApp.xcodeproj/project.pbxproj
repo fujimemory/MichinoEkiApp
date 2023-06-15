@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C943D9EE2A39984D00BD7F16 /* ProfileEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C943D9ED2A39984D00BD7F16 /* ProfileEditViewModel.swift */; };
 		C992E9362A0F6C89003C0F69 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C992E9352A0F6C89003C0F69 /* RegisterViewModel.swift */; };
 		C992E9382A0F8953003C0F69 /* String_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C992E9372A0F8953003C0F69 /* String_Extension.swift */; };
 		C992E93A2A106224003C0F69 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C992E9392A106224003C0F69 /* GoogleService-Info.plist */; };
@@ -47,6 +48,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C943D9ED2A39984D00BD7F16 /* ProfileEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewModel.swift; sourceTree = "<group>"; };
 		C992E9352A0F6C89003C0F69 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		C992E9372A0F8953003C0F69 /* String_Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String_Extension.swift; sourceTree = "<group>"; };
 		C992E9392A106224003C0F69 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				C992E9352A0F6C89003C0F69 /* RegisterViewModel.swift */,
 				C992E93D2A135E4B003C0F69 /* LoginViewModel.swift */,
 				C992E93F2A1D0F76003C0F69 /* MapViewModel.swift */,
+				C943D9ED2A39984D00BD7F16 /* ProfileEditViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -314,6 +317,7 @@
 				C992E93C2A107CF6003C0F69 /* FireBase_Extension.swift in Sources */,
 				C9A23E2E2A0CDC4F00B2F5DF /* StationDetailViewController.swift in Sources */,
 				C9A23E0F2A0CDA1C00B2F5DF /* HomeTabBerController.swift in Sources */,
+				C943D9EE2A39984D00BD7F16 /* ProfileEditViewModel.swift in Sources */,
 				C9A23E0B2A0CDA1C00B2F5DF /* AppDelegate.swift in Sources */,
 				C9A23E392A0CDD7D00B2F5DF /* Memory.swift in Sources */,
 				C9A23E0D2A0CDA1C00B2F5DF /* SceneDelegate.swift in Sources */,

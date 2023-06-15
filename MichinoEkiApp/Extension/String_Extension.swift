@@ -14,6 +14,14 @@ extension String {
 //        return withoutSpaces
 //    }
     
+    // 文字列の前後の空白を消し、文字中の空白を半角スペースにする
+    var shapedString : String{
+        let trimmedString = self.trimmingCharacters(in: .whitespacesAndNewlines)
+        let words = trimmedString.components(separatedBy: .whitespacesAndNewlines)
+        let returnText = words.filter {!$0.isEmpty}.joined(separator: " ")
+        return returnText
+    }
+    
     // 文字列に空白が含まれているか確認する
     var checkWhiteSpace : Bool {//有：true, 無：false
         let whitespaceSet = CharacterSet.whitespaces
