@@ -55,15 +55,20 @@ extension Firestore {
             }
     }
     
-    static func updateUserInfoToFirestore(dic : [String:Any],completion: @escaping () -> Void){
+    static func updateUserInfoToFirestore(name: String,introduction : String,completion: @escaping (Bool) -> Void){
         guard let uid = Auth.auth().currentUser?.uid else { return }
+        let dic = [
+            "name" : name,
+            "introduction" : introduction
+        ] as [String : Any]
         let ref = firestore().collection("users").document(uid)
         ref.updateData(dic) { error in
             if let error = error {
                 print("ユーザ情報の更新に失敗しました",error)
+                completion(false)
             }
             print("ユーザ情報の更新に成功しました")
-            completion()
+            completion(true)
         }
     }
     
@@ -101,29 +106,7 @@ extension Firestore {
 }
 
 extension Storage {
-    static func saveDefaultImageToStorage(image: UIImage,dic: [String:Any],completion : @escaping () -> Void){
-        guard let uid = Auth.auth().currentUser?.uid,
-              let uploadImage = image.jpegData(compressionQuality: 0.3) else { return }
+    static func updateUserImageToStorage(image : UIImage,completion : @escaping () -> Void){
         
-        let storageRef = storage().reference().child("ProfileImages").child(uid)
-        storageRef.putData(uploadImage, metadata: nil) { _ , error in
-            if let error = error{
-                print("画像データの保存に失敗",error.localizedDescription)
-            }
-            print("画像の保存に成功")
-            storageRef.downloadURL { url, error in
-                if let error = error {
-                    print("URLの取得に失敗",error)
-                }
-                
-                guard let urlString = url?.absoluteString else{ return }
-                var newDic = dic
-                newDic["profileImageURL"] = urlString
-                
-                Firestore.updateUserInfoToFirestore(dic: newDic) {
-                    completion()
-                }
-            }
-        }
     }
 }

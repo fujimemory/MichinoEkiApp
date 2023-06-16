@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseFirestore
 import SDWebImage
 import RxSwift
 import RxCocoa
@@ -15,11 +16,15 @@ class ProfileEditViewController: UIViewController {
     var disposeBag = DisposeBag()
     var viewModel = ProfileEditViewModel()
     var imageIsChanged  = false
+    var name = ""
+    var introduction = ""
     var user : User? {
         didSet{
             if let user = user {
                 nameTextfield.text = user.name
+                name = user.name // 変数に格納
                 introductionTextView.text = user.introduction
+                introduction = user.introduction // 変数に格納
                 // プロフィールの画像をセット
                 if let url = URL(string: user.profileImageURL){
                     profileImage.sd_setImage(with: url)
@@ -181,14 +186,19 @@ extension ProfileEditViewController {
         nameTextfield.rx.text
             .asDriver()
             .drive { text in
-                self.viewModel.nameInput.onNext(text ?? "")
+                let text = text ?? ""
+                self.viewModel.nameInput.onNext(text)
+                self.name = text
+                
             }
             .disposed(by: disposeBag)
         
         introductionTextView.rx.text
             .asDriver()
             .drive { text in
-                self.viewModel.introductionInput.onNext(text ?? "")
+                let text = text ?? ""
+                self.viewModel.introductionInput.onNext(text)
+                self.introduction = text
             }
             .disposed(by: disposeBag)
         
@@ -203,13 +213,16 @@ extension ProfileEditViewController {
             .asDriver()
             .drive { [weak self] _ in
                 guard let self = self else { return }
-                let dic = [
-                    "name": self.nameTextfield.text ?? "",
-                    "introduction" : self.introductionTextView.text ?? ""
-                ]
+                Firestore.updateUserInfoToFirestore(name: self.name, introduction: self.introduction) { result in
+                    if result{
+                        self.dismiss(animated: true)
+                    }else {
+                        print("ユーザ情報の更新に失敗しました")
+                    }
+                }
                // TODO: 画像が変更された時の処理を追加する
-                
             }
+            .disposed(by: disposeBag)
     }
     
     @objc private func dismissScreen(){
