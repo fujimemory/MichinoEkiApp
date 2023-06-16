@@ -55,12 +55,8 @@ extension Firestore {
             }
     }
     
-    static func updateUserInfoToFirestore(name: String,introduction : String,completion: @escaping (Bool) -> Void){
+    static func updateUserInfoToFirestore(dic: [String:Any],completion: @escaping (Bool) -> Void){
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        let dic = [
-            "name" : name,
-            "introduction" : introduction
-        ] as [String : Any]
         let ref = firestore().collection("users").document(uid)
         ref.updateData(dic) { error in
             if let error = error {
@@ -106,7 +102,34 @@ extension Firestore {
 }
 
 extension Storage {
-    static func updateUserImageToStorage(image : UIImage,completion : @escaping () -> Void){
+    static func updateUserImageToStorage(image : UIImage?,dic: [String : Any],completion : @escaping (Bool) -> Void){
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        let ref = storage().reference().child("ProfileImages").child(uid)
+        guard let image = image,
+              let data = image.jpegData(compressionQuality: 0.3) else { return }
+        ref.putData(data) { _ , error in
+            if let error = error {
+                print("プロフィール画像の保存に失敗しました",error)
+            }
+            print("プロフィール画像の保存に成功しました")
+            ref.downloadURL { url, error in
+                if let error = error {
+                    print("画像URLの取得に失敗",error)
+                }
+                guard let url = url else { return }
+                let urlString = url.absoluteString
+                
+                var newDic = dic
+                newDic["profileImageURL"] = urlString
+                
+                Firestore.updateUserInfoToFirestore(dic: newDic) { result in
+                    completion(result)
+                }
+                
+                
+            }
+            
+        }
         
     }
 }

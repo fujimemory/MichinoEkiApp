@@ -78,5 +78,7 @@ class ProfileTableViewCell: UITableViewCell {
         descriptionLabel.textColor = .black
         stationCountLabel.textColor = .black
         userNameLabel.font = .systemFont(ofSize: 24, weight: .semibold)
+        profileImage.layer.cornerRadius = 40
+       
     }
 }

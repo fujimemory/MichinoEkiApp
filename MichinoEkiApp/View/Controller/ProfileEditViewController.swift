@@ -11,6 +11,7 @@ import FirebaseFirestore
 import SDWebImage
 import RxSwift
 import RxCocoa
+import FirebaseStorage
 
 class ProfileEditViewController: UIViewController {
     var disposeBag = DisposeBag()
@@ -213,13 +214,24 @@ extension ProfileEditViewController {
             .asDriver()
             .drive { [weak self] _ in
                 guard let self = self else { return }
-                Firestore.updateUserInfoToFirestore(name: self.name, introduction: self.introduction) { result in
-                    if result{
-                        self.dismiss(animated: true)
-                    }else {
-                        print("ユーザ情報の更新に失敗しました")
+                let dic = [
+                    "name" : self.name,
+                    "introduction" : introduction
+                ] as [String : Any]
+                if imageIsChanged {
+                    Storage.updateUserImageToStorage(image: profileImage.image, dic: dic) { result in
+                        if result{
+                            self.dismiss(animated: true)
+                        }
+                    }
+                }else{
+                    Firestore.updateUserInfoToFirestore(dic: dic){ result in
+                        if result{
+                            self.dismiss(animated: true)
+                        }
                     }
                 }
+                
                // TODO: 画像が変更された時の処理を追加する
             }
             .disposed(by: disposeBag)
